@@ -1,9 +1,44 @@
 import { useEffect, useState } from 'react'
 import bwCornerPhotoUrl from '../resources/photos/V+E-8328.jpg'
 import clrLandscapePhotoUrl from '../resources/photos/V+E-8274.jpg'
+import carIconUrl from '../resources/icons/car.svg'
+import planeIconUrl from '../resources/icons/plane.svg'
+import envelopeOpenUrl from '../resources/photos/envelopeOpen.png'
+import envelopeFrontUrl from '../resources/photos/envelopeFront.png'
+import saveTheDateUrl from '../resources/photos/SaveTheDate.png'
+import envelopeClosedUrl from '../resources/photos/envelopeClosedDetail.png'
 
 function App() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 })
+  const [envelopeStatus, setEnvelopeStatus] = useState<'closed' | 'loading' | 'open'>('closed')
+  const [showScrollDown, setShowScrollDown] = useState(false)
+
+  const faqs = [
+    {
+      question: 'Where will the wedding and reception be held?',
+      answer: 'Baltimore, Maryland',
+    },
+    {
+      question: 'Will there be a wedding ceremony?',
+      answer: 'Yes, we will be having a Catholic Nuptial Mass at 2PM. All are welcomed and encouraged to attend. The reception will be in the evening.',
+    },
+    {
+      question: 'When do I need to RSVP?',
+      answer: 'Formal invitations will be out later this year with RSVP information.',
+    },
+    {
+      question: 'Will there be accommodation(s) near the venue or hotel room block(s)?',
+      answer: 'Yes, we will have multiple hotel blocks available. Information will be in the formal invitation.',
+    },
+    {
+      question: 'Can I bring a guest?',
+      answer: 'We are excited to celebrate this day surrounded by our closest family and friends. We are only accommodating guests formally invited on the wedding invitation.',
+    },
+    {
+      question: 'Can I bring my kids to the reception?',
+      answer: 'The wedding reception will be an Adults Only (21+) occasion.',
+    },
+  ]
 
   useEffect(() => {
     const target = new Date(2027, 3, 17, 0, 0, 0).getTime()
@@ -29,18 +64,71 @@ function App() {
     return () => clearInterval(timer)
   }, [])
 
+  const handleEnvelopeOpen = () => {
+    if (envelopeStatus === 'closed') {
+      setEnvelopeStatus('loading')
+      return
+    }
+
+    if (envelopeStatus === 'loading') {
+      setEnvelopeStatus('open')
+    }
+  }
+
+  useEffect(() => {
+    if (envelopeStatus !== 'open') {
+      setShowScrollDown(false)
+      return
+    }
+
+    const scrollDownTimer = window.setTimeout(() => {
+      setShowScrollDown(true)
+    }, 1000)
+
+    return () => window.clearTimeout(scrollDownTimer)
+  }, [envelopeStatus])
+
   return (
     <main className="scroll-smooth text-slate-100">
-      <section className="h-screen bg-slate-950 flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="mt-4 text-4xl font-semibold sm:text-5xl md:text-6xl">April 17, 2026</h1>
-        <p className="mt-4 max-w-2xl text-slate-300 text-base sm:text-lg">
-          Join us in Baltimore, Maryland
-        </p>
+      <section
+        className="h-screen bg-slate-50 flex flex-col items-center justify-center px-6 text-center cursor-pointer"
+        onClick={handleEnvelopeOpen}
+      >
+        <div className="relative mt-8 mb-8 w-[80vw] md:w-[40vw]">
+          <img
+            src={envelopeClosedUrl}
+            alt="Closed save the date"
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+          />
+          <div className={`relative w-full transition-opacity duration-500 ${envelopeStatus === 'closed' ? 'opacity-0' : 'opacity-100'}`}>
+            <img
+              src={envelopeOpenUrl}
+              alt="Open save the date envelope"
+              className={`w-full h-auto transition-all duration-700 ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+            />
+            <img
+              src={saveTheDateUrl}
+              alt="Save the date card"
+              className={`absolute left-1/2 -translate-x-1/2 bottom-5 w-[80%] h-auto object-contain transition-transform duration-300 ${envelopeStatus === 'loading' ? 'hover:-translate-y-[20%]' : ''}`}
+            />
+            <img
+              src={envelopeFrontUrl}
+              alt="Open save the date front"
+              className={`absolute left-0 right-0 bottom-0 w-full h-auto object-contain drop-shadow-[0_-18px_28px_rgba(15,23,42,0.7)] transition-all duration-700 ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+            />
+          </div>
+          <p className={`text-sm uppercase tracking-[0.25em] text-slate-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>click to open</p>
+          <p className={`text-sm uppercase tracking-[0.25em] text-slate-600 transition-opacity duration-700 ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
+              scroll down
+            </p>
+        </div>
       </section>
 
-      <section className="h-[150vh] md:h-screen bg-slate-900 flex flex-col items-center justify-start md:justify-center text-center md:px-0">
+      {envelopeStatus === 'open' && (
+        <>
+          <section className="h-[172vh] md:h-screen bg-slate-900 flex flex-col items-center justify-start md:justify-center text-center md:px-0">
         <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
-          <div className="h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
+          <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
             <div className="mt-8 w-full max-w-[60vw] mx-auto grid gap-4 grid-cols-3 text-center">
               {['Days', 'Hours', 'Minutes'].map((label, idx) => {
                 const value = [countdown.days, countdown.hours, countdown.minutes][idx]
@@ -49,20 +137,36 @@ function App() {
                   <div key={label} className="flex flex-col items-center justify-center rounded-3xl bg-slate-900/80 px-4 py-6 shadow-lg shadow-slate-950/20 text-center">
                     <p className="text-2xl font-semibold text-white">{value.toString().padStart(2, '0')}</p>
                     <span className="mt-2 block text-sm uppercase tracking-[0.35em] text-slate-400">
-                      <span className="hidden sm:inline">{label}</span>
-                      <span className="inline sm:hidden">{abbr}</span>
+                      <span className="hidden md:inline">{label}</span>
+                      <span className="inline md:hidden">{abbr}</span>
                     </span>
                   </div>
                 )
               })}
             </div>
-            <h2 className="mt-8 text-3xl font-semibold sm:text-4xl">Event Information</h2>
-            <ul className="mt-4 mx-auto max-w-xl text-left text-slate-300 text-base sm:text-lg list-disc list-inside space-y-2">
-              <li>39 miles from Washington, DC</li>
-              <li>175 miles from Union, NJ</li>
-              <li>247 miles from Virginia Beach, VA</li>
-              <li>8,451 miles from Bolinao, Pangasinan</li>
-              <li>8,749 miles from Astoria, Cebu</li>
+            <span className="text-sm uppercase tracking-[0.35em] text-slate-400">until the big day!</span>
+            <h2 className="mt-8 text-3xl font-semibold md:text-4xl">Details</h2>
+            <ul className="mt-4 mx-auto max-w-xl text-left text-slate-300 text-base md:text-lg list-none space-y-2">
+              <li className="flex items-center gap-2">
+                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
+                39 miles from Washington, DC
+              </li>
+              <li className="flex items-center gap-2">
+                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
+                175 miles from Union, NJ
+              </li>
+              <li className="flex items-center gap-2">
+                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
+                247 miles from Virginia Beach, VA
+              </li>
+              <li className="flex items-center gap-2">
+                <img src={planeIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
+                8,451 miles from Bolinao, Pangasinan
+              </li>
+              <li className="flex items-center gap-2">
+                <img src={planeIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
+                8,749 miles from Astoria, Cebu
+              </li>
             </ul>
           </div>
           <div className="max-h-screen w-fit md:max-w-[66vw] mt-auto self-end shadow-slate-950/50 md:order-2">
@@ -73,21 +177,22 @@ function App() {
             />
           </div>
         </div>
-      </section>
+          </section>
 
-      <section className="h-screen bg-slate-950/95 flex flex-col items-center justify-center px-6 text-center">
-        <span className="text-sm uppercase tracking-[0.35em] text-slate-400">To be Sent & Announced</span>
-        <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Invitations</h2>
-        <ul className="mt-4 max-w-2xl text-left text-slate-300 text-base sm:text-lg list-disc list-inside space-y-2">
-          <li>RSVP information</li>
-          <li>Wedding ceremony location</li>
-          <li>Wedding reception location</li>
-          <li>Travel and lodging information</li>
-          <li>Activities around Baltimore</li>
-        </ul>
-      </section>
+          <section className="min-h-screen bg-slate-950/95 flex flex-col items-center justify-center mt-6 mb-6 px-6 text-center">
+        <span className="text-sm uppercase tracking-[0.35em] text-slate-400">Frequently Asked Questions</span>
+        <h2 className="mt-4 text-3xl font-semibold md:text-4xl">FAQ</h2>
+        <dl className="mt-8 grid w-full max-w-5xl text-left text-slate-300 text-sm md:text-base lg:text-lg divide-y divide-slate-700">
+          {faqs.map(({ question, answer }) => (
+            <div key={question} className="grid gap-2 px-4 py-4 md:gap-3 md:px-6 md:py-5 md:[grid-template-columns:2fr_3fr] md:items-center">
+              <dt className="font-semibold text-white md:pr-4">{question}</dt>
+              <dd className="leading-6 text-slate-300">{answer}</dd>
+            </div>
+          ))}
+        </dl>
+          </section>
 
-      <section className="bg-slate-950/95 flex flex-col items-center justify-center px-0 text-center overflow-hidden">
+          <section className="bg-slate-950/95 flex flex-col items-center justify-center px-0 text-center overflow-hidden">
         <div className="w-screen max-w-none">
           <img
             src={clrLandscapePhotoUrl}
@@ -95,7 +200,9 @@ function App() {
             className="w-full h-auto object-contain"
           />
         </div>
-      </section>
+          </section>
+        </>
+      )}
     </main>
   )
 }
