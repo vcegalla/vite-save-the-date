@@ -5,7 +5,7 @@ import carIconUrl from '../resources/icons/car.svg'
 import planeIconUrl from '../resources/icons/plane.svg'
 import envelopeOpenUrl from '../resources/photos/envelopeOpen.png'
 import envelopeFrontUrl from '../resources/photos/envelopeFront.png'
-import saveTheDateUrl from '../resources/photos/SaveTheDate.png'
+import saveTheDateUrl from '../resources/photos/saveTheDate.png'
 import envelopeClosedUrl from '../resources/photos/envelopeClosedDetailv3.png'
 
 function App() {
