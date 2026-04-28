@@ -4,3 +4,4 @@ dist
 .env
 .env.*
 .DS_Store
+.github/workflows/deploy-pages.yml
