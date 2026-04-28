@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import bwCornerPhotoUrl from '../resources/photos/V+E-8328.jpg'
-import clrLandscapePhotoUrl from '../resources/photos/V+E-8274.jpg'
+import clrLandscapePhotoUrl from '../resources/photos/V+E-8390-cropped.png'
 import carIconUrl from '../resources/icons/car.svg'
 import planeIconUrl from '../resources/icons/plane.svg'
 import envelopeOpenUrl from '../resources/photos/envelopeOpen.png'
 import envelopeFrontUrl from '../resources/photos/envelopeFront.png'
 import saveTheDateUrl from '../resources/photos/SaveTheDate.png'
-import envelopeClosedUrl from '../resources/photos/envelopeClosedDetail.png'
+import envelopeClosedUrl from '../resources/photos/envelopeClosedDetailv3.png'
 
 function App() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 })
@@ -24,7 +24,7 @@ function App() {
     },
     {
       question: 'When do I need to RSVP?',
-      answer: 'Formal invitations will be out later this year with RSVP information.',
+      answer: 'Formal invitations will be sent out later this year with RSVP information.',
     },
     {
       question: 'Will there be accommodation(s) near the venue or hotel room block(s)?',
@@ -36,12 +36,24 @@ function App() {
     },
     {
       question: 'Can I bring my kids to the reception?',
-      answer: 'The wedding reception will be an Adults Only (21+) occasion.',
+      answer: 'The wedding reception will be an Adults Only (21+) occasion. We sincerely appreciate you taking the time to celebrate with us!',
     },
   ]
 
+  const travelDistances = {
+    car: [
+      { miles: '39', location: 'Washington, DC' },
+      { miles: '175', location: 'Union, NJ' },
+      { miles: '247', location: 'Virginia Beach, VA' },
+    ],
+    plane: [
+      { miles: '8,451', location: 'Bolinao, Pangasinan' },
+      { miles: '8,749', location: 'Astorias, Cebu' },
+    ],
+  }
+
   useEffect(() => {
-    const target = new Date(2027, 3, 17, 0, 0, 0).getTime()
+    const target = new Date('2027-04-17T14:00:00-04:00').getTime()
 
     const tick = () => {
       const now = Date.now()
@@ -89,12 +101,12 @@ function App() {
   }, [envelopeStatus])
 
   return (
-    <main className="scroll-smooth text-slate-100">
+    <main className="scroll-smooth text-zinc-100">
       <section
-        className="h-screen bg-slate-50 flex flex-col items-center justify-center px-6 text-center cursor-pointer"
+        className="h-screen bg-black flex flex-col items-center justify-center px-6 text-center cursor-pointer"
         onClick={handleEnvelopeOpen}
       >
-        <div className="relative mt-8 mb-8 w-[80vw] md:w-[40vw]">
+        <div className="relative mt-8 mb-8 w-[90vw] md:w-[40vw]">
           <img
             src={envelopeClosedUrl}
             alt="Closed save the date"
@@ -117,8 +129,8 @@ function App() {
               className={`absolute left-0 right-0 bottom-0 w-full h-auto object-contain drop-shadow-[0_-18px_28px_rgba(15,23,42,0.7)] transition-all duration-700 ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
             />
           </div>
-          <p className={`text-sm uppercase tracking-[0.25em] text-slate-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>click to open</p>
-          <p className={`text-sm uppercase tracking-[0.25em] text-slate-600 transition-opacity duration-700 ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
+          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>click to open</p>
+          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 transition-opacity duration-700 ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
               scroll down
             </p>
         </div>
@@ -126,17 +138,30 @@ function App() {
 
       {envelopeStatus === 'open' && (
         <>
-          <section className="h-[172vh] md:h-screen bg-slate-900 flex flex-col items-center justify-start md:justify-center text-center md:px-0">
+          <section className="h-[172vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
         <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
           <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
-            <div className="mt-8 w-full max-w-[60vw] mx-auto grid gap-4 grid-cols-3 text-center">
+            <p className="mt-8 text-zinc-400">save this date</p>
+            <h1 className="mt-2 text-4xl font-semibold md:text-5xl">April 17, 2027</h1>
+            <h3 className="mt-8 font-semibold text-2xl">FRIENDS & FAMILY</h3>
+            <p className="mt-2 text-zinc-400">from near and far</p>
+            <ul className="mt-4 mx-auto w-fit text-left text-zinc-300 text-base md:text-lg list-none space-y-2">
+              {[...travelDistances.car.map((entry) => ({ ...entry, mode: 'car' as const })), ...travelDistances.plane.map((entry) => ({ ...entry, mode: 'plane' as const }))].map(({ mode, miles, location }) => (
+                <li key={`${mode}-${location}`} className="flex items-center justify-start gap-2">
+                  <img src={mode === 'car' ? carIconUrl : planeIconUrl} alt={mode === 'car' ? 'Car' : 'Plane'} className="w-4 h-4 flex-shrink-0" />
+                  {miles} miles from {location}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-zinc-400">to Baltimore, Maryland</p>
+            <div className="mt-8 mb-8 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
               {['Days', 'Hours', 'Minutes'].map((label, idx) => {
                 const value = [countdown.days, countdown.hours, countdown.minutes][idx]
                 const abbr = ['Day', 'Hr', 'Min'][idx]
                 return (
-                  <div key={label} className="flex flex-col items-center justify-center rounded-3xl bg-slate-900/80 px-4 py-6 shadow-lg shadow-slate-950/20 text-center">
+                  <div key={label} className="flex flex-col items-center justify-center rounded-3xl bg-black/80 px-4 py-6 shadow-lg shadow-black/20 text-center">
                     <p className="text-2xl font-semibold text-white">{value.toString().padStart(2, '0')}</p>
-                    <span className="mt-2 block text-sm uppercase tracking-[0.35em] text-slate-400">
+                    <span className="mt-2 block text-sm uppercase tracking-[0.35em] text-zinc-400">
                       <span className="hidden md:inline">{label}</span>
                       <span className="inline md:hidden">{abbr}</span>
                     </span>
@@ -144,32 +169,10 @@ function App() {
                 )
               })}
             </div>
-            <span className="text-sm uppercase tracking-[0.35em] text-slate-400">until the big day!</span>
-            <h2 className="mt-8 text-3xl font-semibold md:text-4xl">Details</h2>
-            <ul className="mt-4 mx-auto max-w-xl text-left text-slate-300 text-base md:text-lg list-none space-y-2">
-              <li className="flex items-center gap-2">
-                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
-                39 miles from Washington, DC
-              </li>
-              <li className="flex items-center gap-2">
-                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
-                175 miles from Union, NJ
-              </li>
-              <li className="flex items-center gap-2">
-                <img src={carIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
-                247 miles from Virginia Beach, VA
-              </li>
-              <li className="flex items-center gap-2">
-                <img src={planeIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
-                8,451 miles from Bolinao, Pangasinan
-              </li>
-              <li className="flex items-center gap-2">
-                <img src={planeIconUrl} alt="Car" className="w-4 h-4 flex-shrink-0" />
-                8,749 miles from Astoria, Cebu
-              </li>
-            </ul>
+            <span className="text-sm uppercase tracking-[0.35em] text-zinc-400">until the big day!</span>
+            
           </div>
-          <div className="max-h-screen w-fit md:max-w-[66vw] mt-auto self-end shadow-slate-950/50 md:order-2">
+          <div className="max-h-screen w-fit md:max-w-[66vw] mt-auto self-end shadow-zinc-950/50 md:order-2">
             <img
               src={bwCornerPhotoUrl}
               alt="V+E 1"
@@ -179,20 +182,20 @@ function App() {
         </div>
           </section>
 
-          <section className="min-h-screen bg-slate-950/95 flex flex-col items-center justify-center mt-6 mb-6 px-6 text-center">
-        <span className="text-sm uppercase tracking-[0.35em] text-slate-400">Frequently Asked Questions</span>
+          <section className="min-h-screen bg-black flex flex-col items-center justify-center px-6 text-center">
+        <span className="text-sm mt-6 uppercase tracking-[0.35em] text-zinc-400">Frequently Asked Questions</span>
         <h2 className="mt-4 text-3xl font-semibold md:text-4xl">FAQ</h2>
-        <dl className="mt-8 grid w-full max-w-5xl text-left text-slate-300 text-sm md:text-base lg:text-lg divide-y divide-slate-700">
+        <dl className="mt-8 mb-6 grid w-full max-w-5xl text-left text-zinc-300 text-sm md:text-base lg:text-lg divide-y divide-zinc-700">
           {faqs.map(({ question, answer }) => (
             <div key={question} className="grid gap-2 px-4 py-4 md:gap-3 md:px-6 md:py-5 md:[grid-template-columns:2fr_3fr] md:items-center">
               <dt className="font-semibold text-white md:pr-4">{question}</dt>
-              <dd className="leading-6 text-slate-300">{answer}</dd>
+              <dd className="leading-6 text-zinc-300">{answer}</dd>
             </div>
           ))}
         </dl>
           </section>
 
-          <section className="bg-slate-950/95 flex flex-col items-center justify-center px-0 text-center overflow-hidden">
+          <section className="bg-black/95 flex flex-col items-center justify-center px-0 text-center overflow-hidden">
         <div className="w-screen max-w-none">
           <img
             src={clrLandscapePhotoUrl}
