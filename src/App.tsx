@@ -138,7 +138,7 @@ function App() {
 
       {envelopeStatus === 'open' && (
         <>
-          <section className="h-[172vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
+          <section className="h-[165vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
         <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
           <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
             <p className="mt-8 text-zinc-400">save this date</p>
@@ -154,6 +154,13 @@ function App() {
               ))}
             </ul>
             <p className="mt-2 text-zinc-400">to Baltimore, Maryland</p>
+            <a
+              href="./save-the-date.ics"
+              download="save-the-date.ics"
+              className="mt-6 inline-flex items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 px-6 py-3 text-sm uppercase tracking-[0.2em] text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-zinc-100"
+            >
+              Download Calendar Invite
+            </a>
             <div className="mt-8 mb-8 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
               {['Days', 'Hours', 'Minutes'].map((label, idx) => {
                 const value = [countdown.days, countdown.hours, countdown.minutes][idx]
