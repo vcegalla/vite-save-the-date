@@ -35,5 +35,4 @@ This project is configured to deploy automatically with GitHub Actions using `.g
 ### Local check before pushing
 
 - Build exactly what Pages deploys:
-
   - `npm run build:pages`

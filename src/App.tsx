@@ -23,7 +23,8 @@ function App() {
     },
     {
       question: 'Will there be a wedding ceremony?',
-      answer: 'Yes, we will be having a Catholic Nuptial Mass at 2PM. All are welcomed and encouraged to attend. The reception will be in the evening.',
+      answer:
+        'Yes, we will be having a Catholic Nuptial Mass at 2PM. All are welcomed and encouraged to attend. The reception will be in the evening.',
     },
     {
       question: 'When do I need to RSVP?',
@@ -31,15 +32,18 @@ function App() {
     },
     {
       question: 'Will there be accommodation(s) near the venue or hotel room block(s)?',
-      answer: 'Yes, we will have multiple hotel blocks available. Information will be in the formal invitation.',
+      answer:
+        'Yes, we will have multiple hotel blocks available. Information will be in the formal invitation.',
     },
     {
       question: 'Can I bring a guest?',
-      answer: 'We are excited to celebrate this day surrounded by our closest family and friends. We are only accommodating guests formally invited on the wedding invitation.',
+      answer:
+        'We are excited to celebrate this day surrounded by our closest family and friends. We are only accommodating guests formally invited on the wedding invitation.',
     },
     {
       question: 'Can I bring my kids to the reception?',
-      answer: 'The wedding reception will be an Adults Only (21+) occasion. We sincerely appreciate you taking the time to celebrate with us!',
+      answer:
+        'The wedding reception will be an Adults Only (21+) occasion. We sincerely appreciate you taking the time to celebrate with us!',
     },
   ]
 
@@ -115,7 +119,9 @@ function App() {
             alt="Closed save the date"
             className={`absolute inset-0 w-full h-full object-contain transition-all duration-[1400ms] ease-in-out ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
           />
-          <div className={`relative w-full transition-opacity duration-[1200ms] ${envelopeStatus === 'closed' ? 'opacity-0' : 'opacity-100'}`}>
+          <div
+            className={`relative w-full transition-opacity duration-[1200ms] ${envelopeStatus === 'closed' ? 'opacity-0' : 'opacity-100'}`}
+          >
             <img
               src={envelopeOpenUrl}
               alt="Open save the date envelope"
@@ -131,110 +137,145 @@ function App() {
               alt="Save the date card"
               className={`absolute left-1/2 -translate-x-1/2 bottom-5 w-[70%] h-auto object-contain transition-transform duration-[900ms] ${envelopeStatus === 'loading' ? 'hover:-translate-y-[20%]' : ''}`}
             />
- 
 
             <img
               src={envelopeFrontUrl}
               alt="Open save the date front"
               className={`absolute left-0 right-0 bottom-0 w-full h-auto object-contain drop-shadow-[0_-18px_28px_rgba(15,23,42,0.7)] transition-all duration-[1400ms] ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
             />
-                        <img
+            <img
               src={flowerMidRightUrl}
               alt="Flower decoration middle right"
               className={`absolute right-[-5%] bottom-[35%] w-[40%] h-auto object-contain transition-opacity duration-[1800ms] ease-out ${envelopeStatus === 'loading' ? 'opacity-100 delay-300' : 'opacity-0 delay-0'}`}
             />
 
-                       <img
+            <img
               src={flowerBotLeftUrl}
               alt="Flower decoration bottom left"
               className={`absolute left-[-8%] bottom-[-10%] w-[42%] h-auto object-contain transition-opacity duration-[1800ms] ease-out ${envelopeStatus === 'loading' ? 'opacity-100 delay-500' : 'opacity-0 delay-0'}`}
             />
           </div>
-          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>click to open</p>
-          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 transition-opacity duration-[1400ms] ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
-              scroll down
-            </p>
+          <p
+            className={`text-sm uppercase tracking-[0.25em] text-zinc-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+          >
+            click to open
+          </p>
+          <p
+            className={`text-sm uppercase tracking-[0.25em] text-zinc-600 ${envelopeStatus === 'loading' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+          >
+            click to reveal
+          </p>
+          <p
+            className={`text-sm uppercase tracking-[0.25em] text-zinc-600 transition-opacity duration-[1400ms] ${envelopeStatus === 'open' && showScrollDown ? 'opacity-100' : 'opacity-0'}`}
+          >
+            scroll down
+          </p>
         </div>
       </section>
 
       {envelopeStatus === 'open' && (
         <>
-          <section className="h-[172vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
-        <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
-          <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
-            <div className="mx-auto flex w-fit flex-col items-center">
-            <p className="event-header w-full text-left text-8xl leading-none">Elexa</p> 
-            <p className="event-header w-full pl-4 text-left text-8xl leading-[0.4]">& Vince</p>
-            <p className="mt-6 text-xl text-zinc-400 tracking-[0.08em]">ARE GETTING MARRIED</p>
+          <section className="h-[190vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
+            <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
+              <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
+                <div className="mx-auto flex w-fit flex-col items-center">
+                  <p className="event-header w-full text-left text-8xl leading-none">Elexa</p>
+                  <p className="event-header w-full pl-4 text-left text-8xl leading-[0.4]">
+                    & Vince
+                  </p>
+                  <p className="mt-6 text-xl text-zinc-400 tracking-[0.08em]">
+                    ARE GETTING MARRIED
+                  </p>
+                </div>
+                <h1 className="mt-2 text-4xl font-semibold md:text-5xl">April 17, 2027</h1>
+                <h3 className="mt-6 font-semibold text-2xl">FRIENDS & FAMILY</h3>
+                <p className="mt-2 text-zinc-400">from near and far</p>
+                <ul className="mt-2 mx-auto w-fit text-left text-zinc-300 text-base md:text-lg list-none space-y-2">
+                  {[
+                    ...travelDistances.car.map((entry) => ({ ...entry, mode: 'car' as const })),
+                    ...travelDistances.plane.map((entry) => ({ ...entry, mode: 'plane' as const })),
+                  ].map(({ mode, miles, location }) => (
+                    <li
+                      key={`${mode}-${location}`}
+                      className="flex items-center justify-start gap-2"
+                    >
+                      <img
+                        src={mode === 'car' ? carIconUrl : planeIconUrl}
+                        alt={mode === 'car' ? 'Car' : 'Plane'}
+                        className="w-4 h-4 flex-shrink-0"
+                      />
+                      {miles} miles from {location}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-zinc-400">to Baltimore, Maryland</p>
+                <a
+                  href="./save-the-date.ics"
+                  download="save-the-date.ics"
+                  className="mt-4 inline-flex items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 px-6 py-3 text-sm uppercase tracking-[0.2em] text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-zinc-100"
+                >
+                  Download Calendar Invite
+                </a>
+                <div className="mt-6 mb-6 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
+                  {['Days', 'Hours', 'Minutes'].map((label, idx) => {
+                    const value = [countdown.days, countdown.hours, countdown.minutes][idx]
+                    const abbr = ['Day', 'Hr', 'Min'][idx]
+                    return (
+                      <div
+                        key={label}
+                        className="flex flex-col items-center justify-center rounded-3xl bg-black/80 px-4 py-6 shadow-lg shadow-black/20 text-center"
+                      >
+                        <p className="text-2xl font-semibold text-white">
+                          {value.toString().padStart(2, '0')}
+                        </p>
+                        <span className="mt-2 block text-sm uppercase tracking-[0.35em] text-zinc-400">
+                          <span className="hidden md:inline">{label}</span>
+                          <span className="inline md:hidden">{abbr}</span>
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+                <span className="text-sm uppercase tracking-[0.35em] text-zinc-400">
+                  until the big day!
+                </span>
+              </div>
+              <div className="max-h-screen w-fit md:max-w-[66vw] mt-auto self-end shadow-zinc-950/50 md:order-2">
+                <img
+                  src={bwCornerPhotoUrl}
+                  alt="V+E 1"
+                  className="max-h-screen max-w-full h-auto object-contain"
+                />
+              </div>
             </div>
-            <h1 className="mt-2 text-4xl font-semibold md:text-5xl">April 17, 2027</h1>
-            <h3 className="mt-6 font-semibold text-2xl">FRIENDS & FAMILY</h3>
-            <p className="mt-2 text-zinc-400">from near and far</p>
-            <ul className="mt-2 mx-auto w-fit text-left text-zinc-300 text-base md:text-lg list-none space-y-2">
-              {[...travelDistances.car.map((entry) => ({ ...entry, mode: 'car' as const })), ...travelDistances.plane.map((entry) => ({ ...entry, mode: 'plane' as const }))].map(({ mode, miles, location }) => (
-                <li key={`${mode}-${location}`} className="flex items-center justify-start gap-2">
-                  <img src={mode === 'car' ? carIconUrl : planeIconUrl} alt={mode === 'car' ? 'Car' : 'Plane'} className="w-4 h-4 flex-shrink-0" />
-                  {miles} miles from {location}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-2 text-zinc-400">to Baltimore, Maryland</p>
-            <a
-              href="./save-the-date.ics"
-              download="save-the-date.ics"
-              className="mt-4 inline-flex items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 px-6 py-3 text-sm uppercase tracking-[0.2em] text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-zinc-100"
-            >
-              Download Calendar Invite
-            </a>
-            <div className="mt-6 mb-6 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
-              {['Days', 'Hours', 'Minutes'].map((label, idx) => {
-                const value = [countdown.days, countdown.hours, countdown.minutes][idx]
-                const abbr = ['Day', 'Hr', 'Min'][idx]
-                return (
-                  <div key={label} className="flex flex-col items-center justify-center rounded-3xl bg-black/80 px-4 py-6 shadow-lg shadow-black/20 text-center">
-                    <p className="text-2xl font-semibold text-white">{value.toString().padStart(2, '0')}</p>
-                    <span className="mt-2 block text-sm uppercase tracking-[0.35em] text-zinc-400">
-                      <span className="hidden md:inline">{label}</span>
-                      <span className="inline md:hidden">{abbr}</span>
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-            <span className="text-sm uppercase tracking-[0.35em] text-zinc-400">until the big day!</span>
-            
-          </div>
-          <div className="max-h-screen w-fit md:max-w-[66vw] mt-auto self-end shadow-zinc-950/50 md:order-2">
-            <img
-              src={bwCornerPhotoUrl}
-              alt="V+E 1"
-              className="max-h-screen max-w-full h-auto object-contain"
-            />
-          </div>
-        </div>
           </section>
 
           <section className="min-h-screen bg-black flex flex-col items-center justify-center px-6 text-center">
-        <span className="text-sm mt-6 uppercase tracking-[0.35em] text-zinc-400">Frequently Asked Questions</span>
-        <h2 className="mt-4 text-3xl font-semibold md:text-4xl">FAQ</h2>
-        <dl className="mt-8 mb-6 grid w-full max-w-5xl text-left text-zinc-300 text-sm md:text-base lg:text-lg divide-y divide-zinc-700">
-          {faqs.map(({ question, answer }) => (
-            <div key={question} className="grid gap-2 px-4 py-4 md:gap-3 md:px-6 md:py-5 md:[grid-template-columns:2fr_3fr] md:items-center">
-              <dt className="font-semibold text-white md:pr-4">{question}</dt>
-              <dd className="leading-6 text-zinc-300">{answer}</dd>
-            </div>
-          ))}
-        </dl>
+            <span className="text-sm mt-12 uppercase tracking-[0.35em] text-zinc-400">
+              Frequently Asked Questions
+            </span>
+            <h2 className="mt-4 text-3xl font-semibold md:text-4xl">FAQ</h2>
+            <dl className="mt-8 mb-6 grid w-full max-w-5xl text-left text-zinc-300 text-sm md:text-base lg:text-lg divide-y divide-zinc-700">
+              {faqs.map(({ question, answer }) => (
+                <div
+                  key={question}
+                  className="grid gap-2 px-4 py-4 md:gap-3 md:px-6 md:py-5 md:[grid-template-columns:2fr_3fr] md:items-center"
+                >
+                  <dt className="font-semibold text-white md:pr-4">{question}</dt>
+                  <dd className="leading-6 text-zinc-300">{answer}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
 
           <section className="bg-black/95 flex flex-col items-center justify-center px-0 text-center overflow-hidden">
-        <div className="w-screen max-w-none">
-          <img
-            src={clrLandscapePhotoUrl}
-            alt="V+E 8274"
-            className="w-full h-auto object-contain"
-          />
-        </div>
+            <div className="w-screen max-w-none">
+              <img
+                src={clrLandscapePhotoUrl}
+                alt="V+E 8274"
+                className="w-full h-auto object-contain"
+              />
+            </div>
           </section>
         </>
       )}
