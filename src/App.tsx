@@ -7,6 +7,9 @@ import envelopeOpenUrl from '../resources/photos/envelopeOpen.png'
 import envelopeFrontUrl from '../resources/photos/envelopeFront.png'
 import saveTheDateUrl from '../resources/photos/saveTheDate.png'
 import envelopeClosedUrl from '../resources/photos/envelopeClosedDetailv3.png'
+import flowerBotLeftUrl from '../resources/photos/flower-bot-left.png'
+import flowerMidRightUrl from '../resources/photos/flower-mid-right.png'
+import flowerTopLeftUrl from '../resources/photos/flower-top-left.png'
 
 function App() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0 })
@@ -110,27 +113,45 @@ function App() {
           <img
             src={envelopeClosedUrl}
             alt="Closed save the date"
-            className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-[1400ms] ease-in-out ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
           />
-          <div className={`relative w-full transition-opacity duration-500 ${envelopeStatus === 'closed' ? 'opacity-0' : 'opacity-100'}`}>
+          <div className={`relative w-full transition-opacity duration-[1200ms] ${envelopeStatus === 'closed' ? 'opacity-0' : 'opacity-100'}`}>
             <img
               src={envelopeOpenUrl}
               alt="Open save the date envelope"
-              className={`w-full h-auto transition-all duration-700 ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+              className={`w-full h-auto transition-all duration-[1400ms] ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+            />
+            <img
+              src={flowerTopLeftUrl}
+              alt="Flower decoration top left"
+              className={`absolute left-[1%] bottom-[45%] w-[30%] h-auto object-contain transition-opacity duration-[1800ms] ease-out ${envelopeStatus === 'loading' ? 'opacity-100 delay-100' : 'opacity-0 delay-0'}`}
             />
             <img
               src={saveTheDateUrl}
               alt="Save the date card"
-              className={`absolute left-1/2 -translate-x-1/2 bottom-5 w-[80%] h-auto object-contain transition-transform duration-300 ${envelopeStatus === 'loading' ? 'hover:-translate-y-[20%]' : ''}`}
+              className={`absolute left-1/2 -translate-x-1/2 bottom-5 w-[70%] h-auto object-contain transition-transform duration-[900ms] ${envelopeStatus === 'loading' ? 'hover:-translate-y-[20%]' : ''}`}
             />
+ 
+
             <img
               src={envelopeFrontUrl}
               alt="Open save the date front"
-              className={`absolute left-0 right-0 bottom-0 w-full h-auto object-contain drop-shadow-[0_-18px_28px_rgba(15,23,42,0.7)] transition-all duration-700 ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+              className={`absolute left-0 right-0 bottom-0 w-full h-auto object-contain drop-shadow-[0_-18px_28px_rgba(15,23,42,0.7)] transition-all duration-[1400ms] ease-in-out ${envelopeStatus === 'open' ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'}`}
+            />
+                        <img
+              src={flowerMidRightUrl}
+              alt="Flower decoration middle right"
+              className={`absolute right-[-5%] bottom-[35%] w-[40%] h-auto object-contain transition-opacity duration-[1800ms] ease-out ${envelopeStatus === 'loading' ? 'opacity-100 delay-300' : 'opacity-0 delay-0'}`}
+            />
+
+                       <img
+              src={flowerBotLeftUrl}
+              alt="Flower decoration bottom left"
+              className={`absolute left-[-8%] bottom-[-10%] w-[42%] h-auto object-contain transition-opacity duration-[1800ms] ease-out ${envelopeStatus === 'loading' ? 'opacity-100 delay-500' : 'opacity-0 delay-0'}`}
             />
           </div>
           <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 ${envelopeStatus === 'closed' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>click to open</p>
-          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 transition-opacity duration-700 ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
+          <p className={`text-sm uppercase tracking-[0.25em] text-zinc-600 transition-opacity duration-[1400ms] ${envelopeStatus === 'open' &&showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
               scroll down
             </p>
         </div>
@@ -141,11 +162,15 @@ function App() {
           <section className="h-[172vh] md:h-screen bg-black flex flex-col items-center justify-start md:justify-center text-center md:px-0">
         <div className="flex w-full flex-col items-center gap-8 min-h-screen md:min-h-0 md:flex-row md:items-start md:justify-between text-center">
           <div className="min-h-screen w-full md:flex-1 md:order-1 mt-0 md:mt-8 px-6">
-            <p className="mt-8 text-zinc-400">save this date</p>
+            <div className="mx-auto flex w-fit flex-col items-center">
+            <p className="event-header w-full text-left text-8xl leading-none">Elexa</p> 
+            <p className="event-header w-full pl-4 text-left text-8xl leading-[0.4]">& Vince</p>
+            <p className="mt-6 text-xl text-zinc-400 tracking-[0.08em]">ARE GETTING MARRIED</p>
+            </div>
             <h1 className="mt-2 text-4xl font-semibold md:text-5xl">April 17, 2027</h1>
-            <h3 className="mt-8 font-semibold text-2xl">FRIENDS & FAMILY</h3>
+            <h3 className="mt-6 font-semibold text-2xl">FRIENDS & FAMILY</h3>
             <p className="mt-2 text-zinc-400">from near and far</p>
-            <ul className="mt-4 mx-auto w-fit text-left text-zinc-300 text-base md:text-lg list-none space-y-2">
+            <ul className="mt-2 mx-auto w-fit text-left text-zinc-300 text-base md:text-lg list-none space-y-2">
               {[...travelDistances.car.map((entry) => ({ ...entry, mode: 'car' as const })), ...travelDistances.plane.map((entry) => ({ ...entry, mode: 'plane' as const }))].map(({ mode, miles, location }) => (
                 <li key={`${mode}-${location}`} className="flex items-center justify-start gap-2">
                   <img src={mode === 'car' ? carIconUrl : planeIconUrl} alt={mode === 'car' ? 'Car' : 'Plane'} className="w-4 h-4 flex-shrink-0" />
@@ -157,11 +182,11 @@ function App() {
             <a
               href="./save-the-date.ics"
               download="save-the-date.ics"
-              className="mt-6 inline-flex items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 px-6 py-3 text-sm uppercase tracking-[0.2em] text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-zinc-100"
+              className="mt-4 inline-flex items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 px-6 py-3 text-sm uppercase tracking-[0.2em] text-zinc-900 transition-colors hover:bg-zinc-900 hover:text-zinc-100"
             >
               Download Calendar Invite
             </a>
-            <div className="mt-8 mb-8 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
+            <div className="mt-6 mb-6 w-full max-w-[40vw] mx-auto grid gap-4 grid-cols-3 text-center">
               {['Days', 'Hours', 'Minutes'].map((label, idx) => {
                 const value = [countdown.days, countdown.hours, countdown.minutes][idx]
                 const abbr = ['Day', 'Hr', 'Min'][idx]
